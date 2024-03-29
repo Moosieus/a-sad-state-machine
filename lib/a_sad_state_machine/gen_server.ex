@@ -32,11 +32,20 @@ defmodule ASadStateMachine.GenServer do
     raise "Goodbye, cruel world."
   end
 
+  @impl true
+  def handle_cast(:call_self, _state) do
+    GenServer.call(__MODULE__, :goodbye_cruel_world)
+  end
+
   def echo_call(term) do
     GenServer.call(__MODULE__, term, 1000)
   end
 
   def crash_with_cast() do
     GenServer.cast(__MODULE__, :crash)
+  end
+
+  def call_self() do
+    GenServer.cast(__MODULE__, :call_self)
   end
 end

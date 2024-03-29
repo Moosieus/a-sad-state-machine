@@ -1,6 +1,6 @@
 defmodule ASadStateMachine do
   use Supervisor
-    
+
   require Logger
 
   def start_link() do
